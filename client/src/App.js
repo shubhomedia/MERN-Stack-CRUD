@@ -5,6 +5,7 @@ import NavBar from './Components/NavBar';
 import Home from './Components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AllUser from './Components/AllUser';
+import NotFound from './Components/NotFound';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/alluser' element={<AllUser />} />
           <Route path='/adduser' element={<AddUser />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router >
     </div >
