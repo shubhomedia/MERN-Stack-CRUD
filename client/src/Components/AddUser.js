@@ -1,28 +1,56 @@
-import { FormControl, FormGroup, Input, InputLabel } from '@mui/material';
-import React from 'react';
+import { FormControl, FormGroup, Input, InputLabel, Typography, styled, Button } from '@mui/material';
+import React, { useState } from 'react';
+
+const Container = styled(FormGroup)`
+width : 50%;
+margin: 5% auto 0 auto;
+& > div {
+    margin-top: 20px
+}
+`
+
+const defaultValue = {
+    name: '',
+    username: '',
+    email: '',
+    phone: ''
+}
 
 const AddUser = () => {
+
+    const [user, setUser] = useState(defaultValue);
+
+    const adduserDetails = () => {
+
+    }
+
+    const onValueChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    }
+
     return (
-        <div>
-            <FormGroup>
-                <FormControl>
-                    <InputLabel>Name</InputLabel>
-                    <Input></Input>
-                </FormControl>
-                <FormControl>
-                    <InputLabel>UserName</InputLabel>
-                    <Input></Input>
-                </FormControl>
-                <FormControl>
-                    <InputLabel>Email</InputLabel>
-                    <Input></Input>
-                </FormControl>
-                <FormControl>
-                    <InputLabel>Phone</InputLabel>
-                    <Input></Input>
-                </FormControl>
-            </FormGroup>
-        </div>
+        <Container>
+            <Typography variant='h4'>Add New User</Typography>
+            <FormControl>
+                <InputLabel>Name</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name="name"></Input>
+            </FormControl>
+            <FormControl>
+                <InputLabel>UserName</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name="username"></Input>
+            </FormControl>
+            <FormControl>
+                <InputLabel>Email</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name="email"></Input>
+            </FormControl>
+            <FormControl>
+                <InputLabel>Phone</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name="phone"></Input>
+            </FormControl>
+            <FormControl>
+                <Button variant='contained' onClick={() => adduserDetails()}  >Add New User</Button>
+            </FormControl>
+        </Container >
     );
 };
 
