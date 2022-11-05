@@ -11,7 +11,7 @@ margin-right: 20px;
 
 const NavBar = () => {
     return (
-        <Header>
+        <Header position='static'>
             <Toolbar>
                 <Tabs>Home</Tabs>
                 <Tabs>All User</Tabs>
