@@ -1,58 +1,61 @@
-import { FormControl, FormGroup, Input, InputLabel, Typography, styled, Button } from '@mui/material';
-import React, { useState } from 'react';
+import react, { useState } from 'react';
+import { FormGroup, FormControl, InputLabel, Input, Button, styled, Typography } from '@mui/material';
 import { addUser } from '../Service/api';
+import { useNavigate } from 'react-router-dom';
 
-const Container = styled(FormGroup)`
-width : 50%;
-margin: 5% auto 0 auto;
-& > div {
-    margin-top: 20px
-}
-`
-
-const defaultValue = {
+const initialValue = {
     name: '',
     username: '',
     email: '',
     phone: ''
 }
 
-const AddUser = () => {
+const Container = styled(FormGroup)`
+    width: 50%;
+    margin: 5% 0 0 25%;
+    & > div {
+        margin-top: 20px;
+`;
 
-    const [user, setUser] = useState(defaultValue);
+const AddUser = () => {
+    const [user, setUser] = useState(initialValue);
+    const { name, username, email, phone } = user;
+
+    let navigate = useNavigate();
 
     const onValueChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value });
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    const adduserDetails = async () => {
+    const addUserDetails = async () => {
         await addUser(user);
+        navigate('/all');
     }
 
     return (
         <Container>
-            <Typography variant='h4'>Add New User</Typography>
+            <Typography variant="h4">Add User</Typography>
             <FormControl>
-                <InputLabel>Name</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="name"></Input>
+                <InputLabel htmlFor="my-input">Name</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='name' value={name} id="my-input" />
             </FormControl>
             <FormControl>
-                <InputLabel>UserName</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="username"></Input>
+                <InputLabel htmlFor="my-input">Username</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='username' value={username} id="my-input" />
             </FormControl>
             <FormControl>
-                <InputLabel>Email</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="email"></Input>
+                <InputLabel htmlFor="my-input">Email</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='email' value={email} id="my-input" />
             </FormControl>
             <FormControl>
-                <InputLabel>Phone</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="phone"></Input>
+                <InputLabel htmlFor="my-input">Phone</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='phone' value={phone} id="my-input" />
             </FormControl>
             <FormControl>
-                <Button variant='contained' onClick={() => adduserDetails()}  >Add New User</Button>
+                <Button variant="contained" color="primary" onClick={() => addUserDetails()}>Add User</Button>
             </FormControl>
-        </Container >
-    );
-};
+        </Container>
+    )
+}
 
 export default AddUser;
